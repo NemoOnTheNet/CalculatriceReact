@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../src/App.css";
 
 function App() {
   const [display, setDisplay] = useState("");
@@ -73,12 +74,10 @@ function App() {
           break;
         case "/":
           setDisplay(parseFloat(previousNumber) / parseFloat(currentNumber));
-           setPreviousNumber(
-             parseFloat(previousNumber) / parseFloat(currentNumber)
-           );
-           setAfterEqual(
-             parseFloat(previousNumber) / parseFloat(currentNumber)
-           );
+          setPreviousNumber(
+            parseFloat(previousNumber) / parseFloat(currentNumber)
+          );
+          setAfterEqual(parseFloat(previousNumber) / parseFloat(currentNumber));
           break;
       }
     }
@@ -86,34 +85,109 @@ function App() {
     setOperator("");
   };
 
-  return (
-    <>
-      <p>{display}</p>
-      <p>Current number : {currentNumber} </p>
-      <p>Previous number : {previousNumber} </p>
-      <p>Operator : {operator} </p>
+  const handleChangeInput = (e) => {
+    setDisplay(e.target.value);
+  };
 
-      <button onClick={() => handleNumberClick(1)}>1</button>
-      <button onClick={() => handleNumberClick(2)}>2</button>
-      <button onClick={() => handleNumberClick(3)}>3</button>
-      <button onClick={() => handleNumberClick(4)}>4</button>
-      <button onClick={() => handleNumberClick(5)}>5</button>
-      <button onClick={() => handleNumberClick(6)}>6</button>
-      <button onClick={() => handleNumberClick(7)}>7</button>
-      <button onClick={() => handleNumberClick(8)}>8</button>
-      <button onClick={() => handleNumberClick(9)}>9</button>
-      <button onClick={() => handleNumberClick(0)}>0</button>
-      <br />
-      <br />
-      <button onClick={() => handleOperatorClick("+")}>+</button>
-      <button onClick={() => handleOperatorClick("-")}>-</button>
-      <button onClick={() => handleOperatorClick("*")}>*</button>
-      <button onClick={() => handleOperatorClick("/")}>/</button>
-      <br />
-      <br />
-      <button onClick={() => calculat()}>=</button>
-      <p>after equal : {afterEqual} </p>
-    </>
+  const handleClearButton = () => {
+    setDisplay("");
+  };
+
+  return (
+    <main className="calculatrice">
+      <input
+        className="displayer"
+        type="text"
+        onChange={handleChangeInput}
+        value={display}
+      />
+      <section className="buttonSection">
+        <section className="buttonNumberSection">
+          <button
+            className="buttonNumber buttonNumberOne"
+            onClick={() => handleNumberClick(1)}>
+            1
+          </button>
+          <button
+            className="buttonNumber buttonNumberTwo"
+            onClick={() => handleNumberClick(2)}>
+            2
+          </button>
+          <button
+            className="buttonNumber buttonNumberThree"
+            onClick={() => handleNumberClick(3)}>
+            3
+          </button>
+          <button
+            className="buttonNumber buttonNumberFour"
+            onClick={() => handleNumberClick(4)}>
+            4
+          </button>
+          <button
+            className="buttonNumber buttonNumberFive"
+            onClick={() => handleNumberClick(5)}>
+            5
+          </button>
+          <button
+            className="buttonNumber buttonNumberSix"
+            onClick={() => handleNumberClick(6)}>
+            6
+          </button>
+          <button
+            className="buttonNumber buttonNumberSeven"
+            onClick={() => handleNumberClick(7)}>
+            7
+          </button>
+          <button
+            className="buttonNumber buttonNumberEight"
+            onClick={() => handleNumberClick(8)}>
+            8
+          </button>
+          <button
+            className="buttonNumber buttonNumberNine"
+            onClick={() => handleNumberClick(9)}>
+            9
+          </button>
+          <button className="buttonClear" onClick={() => handleClearButton()}>
+            C
+          </button>
+          <button
+            className="buttonNumber buttonNumberZero"
+            onClick={() => handleNumberClick(0)}>
+            0
+          </button>
+        </section>
+
+        <section className="buttonOperatorSection">
+          <button
+            className="buttonOperator buttonOperatorPlus"
+            onClick={() => handleOperatorClick("+")}>
+            +
+          </button>
+          <button
+            className="buttonOperator buttonOperatorMoins"
+            onClick={() => handleOperatorClick("-")}>
+            -
+          </button>
+          <button
+            className="buttonOperator buttonOperatorMultiplication"
+            onClick={() => handleOperatorClick("*")}>
+            x
+          </button>
+          <button
+            className="buttonOperator buttonOperatorDivision"
+            onClick={() => handleOperatorClick("/")}>
+            /
+          </button>
+
+          <button
+            className="buttonOperator buttonOperatorEqual equalButton"
+            onClick={() => calculat()}>
+            =
+          </button>
+        </section>
+      </section>
+    </main>
   );
 }
 
